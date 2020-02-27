@@ -1,0 +1,66 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    grid-area: navegacao;
+    background-color: lightgray;
+}
+
+main {
+    grid-area: conteudo;
+}
+
+footer {
+    grid-area: rodape;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-areas: 'navegacao navegacao' 'conteudo conteudo' 'rodape rodape';
+}
+
+div {
+    display: inline-block;
+    width: 11%;
+}
+
+    div img {
+        width: 100%;
+    }
+
+ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: right;
+    justify-content: space-around;
+    vertical-align: top;
+    width: 85%;
+    height: 100%;
+    list-style-type: none;
+}
+
+a, li {
+    text-decoration: none;
+}
+
+a {
+    display: inline-block;
+    border-radius: 20%;
+    padding: 1.5%;
+    border: solid 5px #000;
+    color: darkred;
+    font-weight: bold;
+    background-color: gold;
+    box-shadow: 0 4px 20px 0 #000;
+}
+
+    a:hover {
+        color: black;
+        background-color: white;
+    }
