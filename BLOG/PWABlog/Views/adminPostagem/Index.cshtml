@@ -1,0 +1,73 @@
+﻿@using PWABlog.ViewModels.Admin.postagem
+@model PWABlog.ViewModels.Admin.postagem.PostagemIndexViewModel
+
+@{
+    ViewBag.Title = @Model.Title;
+    Layout = "_Layout";
+}
+
+<!-- Elaboração de uma mensagem correspodende ao tipo de ação realizado no controller-->
+
+@if (Model.Tipo != null)
+{
+        @switch (Model.Tipo)
+        {
+            case "Criar":
+                <div class="alert alert-primary" role="alert">
+                    @Model.Message
+                </div>
+                break;
+            case "Deletar":
+                <div class="alert alert-danger" role="alert">
+                    @Model.Message
+                </div>
+                break;
+            case "Update":
+                <div class="alert alert-primary" role="alert">
+                     @Model.Message
+                </div>
+                break;
+        }
+}
+
+<!-- Action link para adionar uma nova categoria  -->
+
+@Html.ActionLink("Nova Postagem", "Create", "AdminPostagem", null, new { @class = "btn btn-primary" })
+
+<!--Lista todas as categorias-->
+
+<table class="table table-bordered ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Etiquetas</th>
+            <th scope="col">Revisões</th>
+            <th scope="col">Data e Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var postagem in Model.Postagens)
+        {
+            <tr>
+                <th>@postagem.Id</th>
+                <th>@postagem.Titulo</th>
+                <th>@postagem.Descricao</th>
+                <th>@postagem.Autor</th>
+                <th>@postagem.Categoria</th>
+                <th>@Html.ActionLink("Etiquetas","ListEtiqueta","AdminPostagem",null,new{@class="btn btn-primary"})</th>
+                <th>@Html.ActionLink("Revisões","ListRevisao","AdminPostagem",null,new{@class="btn btn-primary"})</th>
+                <th>@postagem.DataHoraPostagem</th>
+                
+                <th>
+                    @Html.ActionLink("Edit","Edit","AdminPostagem",new {id = postagem.Id})|
+                    @Html.ActionLink("Remove","Remove","AdminPostagem",new {id = postagem.Id})|
+                    @Html.ActionLink("View","Details","AdminPostagem",new{id = postagem.Id})
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PWABlog.Models.Blog.Autor;
 using PWABlog.Models.Blog.Categoria;
 using PWABlog.Models.Blog.Postagem;
 
@@ -36,6 +37,7 @@ namespace PWABlog
             // Adicionar os serviços de ORM das entidades do domínio
             services.AddTransient<CategoriaOrmService>();
             services.AddTransient<PostagemOrmService>();
+            services.AddTransient<AutorOrmService>();
             
             // Adicionar os serviços que possibilitam o funcionamento dos controllers e das views
             services.AddControllersWithViews();
@@ -64,9 +66,7 @@ namespace PWABlog
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

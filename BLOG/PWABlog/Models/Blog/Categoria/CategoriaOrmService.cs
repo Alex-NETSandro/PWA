@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -102,6 +103,46 @@ namespace PWABlog.Models.Blog.Categoria
         {
             return _databaseContext.Categorias.Where(c => c.Nome.Contains(nomeCategoria)).ToList();
             
+        }
+
+        public CategoriaEntity AddCategoria(string nomeCategoria)
+        {
+            var categoria = new CategoriaEntity{Nome=nomeCategoria};
+            _databaseContext.Categorias.Add(categoria);
+            _databaseContext.SaveChanges();
+
+            return categoria;
+        }
+
+        public CategoriaEntity UpdateCategoria(CategoriaEntity cat)
+        {
+            var categoria = _databaseContext.Categorias.Where(c => c.Id == cat.Id).FirstOrDefault();
+            categoria.Id = cat.Id;
+            categoria.Nome = cat.Nome;
+            categoria.Etiquetas = cat.Etiquetas;
+            categoria.Postagens = cat.Postagens;
+            _databaseContext.Categorias.Update(categoria);
+            _databaseContext.SaveChanges();
+            return categoria;
+        }
+        public CategoriaEntity removeCategoria(int id)
+        {
+            var categoria = _databaseContext.Categorias.Find(id);
+            var etiquetas = categoria.Etiquetas.Where(x=>x.Categoria.Id==id).FirstOrDefault();
+            var posts = categoria.Postagens.Where(x=>x.Categoria.Id==id).FirstOrDefault();
+            while (etiquetas != null)
+            {
+                categoria.Etiquetas.Remove(etiquetas);
+            }
+
+            while (posts != null)
+            {
+                categoria.Postagens.Remove(posts);
+            }
+            
+            _databaseContext.Categorias.Remove(categoria);
+            _databaseContext.SaveChanges();
+            return categoria;
         }
     }
 }

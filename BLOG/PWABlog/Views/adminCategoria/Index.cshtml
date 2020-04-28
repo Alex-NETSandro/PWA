@@ -1,0 +1,61 @@
+﻿@using PWABlog.ViewModels.Admin.Categoria
+@model PWABlog.ViewModels.Admin.Categoria.CategoriaIndexViewModel
+
+@{
+    ViewBag.Title = @ViewBag.title;
+    Layout = "_Layout";
+}
+
+<!-- Elaboração de uma mensagem correspodende ao tipo de ação realizado no controller-->
+
+@if (Model.Tipo != null)
+{
+        @switch (Model.Tipo)
+        {
+            case "Criar":
+                <div class="alert alert-primary" role="alert">
+                    @Model.Message
+                </div>
+                break;
+            case "Deletar":
+                <div class="alert alert-danger" role="alert">
+                    @Model.Message
+                </div>
+                break;
+            case "Update":
+                <div class="alert alert-primary" role="alert">
+                     @Model.Message
+                </div>
+                break;
+        }
+}
+
+<!-- Action link para adionar uma nova categoria  -->
+
+@Html.ActionLink("Nova Categoria", "Create", "AdminCategoria", null, new { @class = "btn btn-primary" })
+
+<!--Lista todas as categorias-->
+
+<table class="table table-bordered ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(CategoriaIndex categoria in Model.Categorias)
+        {
+            <tr>
+                <th>@categoria.CategoriaId</th>
+                <th>@categoria.Nome</th>
+                
+                <th>@Html.ActionLink("Edit","Edit","AdminCategoria",new {id = categoria.CategoriaId})|
+                    @Html.ActionLink("Remove","Remove","AdminCategoria",new {id = categoria.CategoriaId})|
+                    @Html.ActionLink("View","Details","AdminCategoria",new{id=categoria.CategoriaId})</th>
+            </tr>
+        }
+    </tbody>
+</table>
+

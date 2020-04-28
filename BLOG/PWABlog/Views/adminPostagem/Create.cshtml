@@ -1,0 +1,66 @@
+﻿@using PWABlog.ViewModels.Admin.postagem
+@model PWABlog.ViewModels.Admin.postagem.PostagemCreateViewModel
+
+@{
+    ViewBag.Title = @ViewBag.title;
+    Layout = "_Layout";
+}
+
+@using(Html.BeginForm("Create","AdminPostagem",FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.Label(null,"Titulo",new{@for="titulo"})
+            @Html.EditorFor(model =>model.Titulo,new{htmlAttributes = new{@class="form-control",@type="Text",@id="titulo",@placeholder="Nome do Titulo"}} )
+        </div>
+        <div class="form-group">
+            @Html.Label(null,"Descrição",new{@for="descricao"})
+            @Html.EditorFor(model =>model.Descricao,new{htmlAttributes = new{@class="form-control",@type="Text",@id="descricao",@placeholder="Descricão"}} )
+        </div>
+        @if(Model.Autor.Count != 0)
+        {
+            <div class="form-group">
+                @Html.Label(null,"Autor",new{@for="autor"})
+                <select class="form-control" name="listAutores"  id="autor">
+                    @foreach (var autor in Model.Autor)
+                    {
+                        <option class="list-group-item" value="@autor.Id">@autor.Nome</option>
+                    }
+                </select>
+            </div>
+        }else{
+            @Html.ActionLink("Novo Autor","Create","AdminCategoria",null,new{@class="btn btn-primary",style="margin-left='2%';"})
+        }
+        @if (Model.Categoria.Count!=0)
+        {
+            <div class="form-group">
+                @Html.Label(null,"Categoria",new{@for="categoria"})
+                <select class="form-control" name="listCategorias" id="categoria">
+                    @foreach (var categoria in Model.Categoria)
+                    {
+                        <option class="list-group-item" value="@categoria.Id">@categoria.Nome</option>
+                    }
+                </select>
+            </div>
+           
+        }else{
+            @Html.ActionLink("Nova Categoria","Create","AdminCategoria",null,new{@class="btn btn-primary"})
+        }
+        @if (Model.PostagensEtiqueta.Count!=0)
+        {
+            <div class="form-group">
+                @Html.Label(null,"Etiqueta",new{@for="etiqueta"})
+                <select class="form-control" name="listEtiquetas" id="etiqueta">
+                    @foreach (var etiqueta in Model.PostagensEtiqueta)
+                    {
+                        <option class="list-group-item" value="@etiqueta.Id">@etiqueta.Nome</option>
+                    }
+                </select>
+            </div>
+        }else{
+            @Html.ActionLink("Nova Etiqueta","Edit","AdminPostagem",null,new{@class="btn btn-primary"})
+        }
+        <div>
+            <input type="submit" class="btn btn-primary" value="Gravar">
+        </div>
+    }
+

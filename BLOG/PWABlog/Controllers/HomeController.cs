@@ -28,6 +28,10 @@ namespace PWABlog.Controllers
             _postagemOrmService = postagemOrmService;
         }
 
+        [Route("")]
+        [Route("Home")]
+        [Route("Home/Index")]
+        [Route("Home/Index/{id?}")]
         public IActionResult Index()
         {   
             // Instanciar a ViewModel
