@@ -34,9 +34,9 @@ namespace PWABlog.ViewModels.Admin.postagem
 
         public DateTime DataHoraPostagem { get; set; }
 
-        public AutorEntity Autor { get; set; }
+        public String Autor { get; set; }
         
-        public CategoriaEntity Categoria { get; set; }
+        public String Categoria { get; set; }
 
         public List<PostagemEtiquetaEntity> PostagensEtiquetas { get; set; }
 

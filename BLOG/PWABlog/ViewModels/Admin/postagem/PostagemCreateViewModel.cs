@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.Language.CodeGeneration;
+using NHttp;
 using PWABlog.Models.Blog.Autor;
 using PWABlog.Models.Blog.Categoria;
 using PWABlog.Models.Blog.Etiqueta;
@@ -46,6 +50,13 @@ public class CategoriaCreate{
     public int Id { get; set; }
 
     public string Nome { get; set; }
+    
+    public ICollection<EtiquetaIndex> etiquetaIndex { get; set; }
+
+    public CategoriaCreate()
+    {
+        etiquetaIndex = new List<EtiquetaIndex>();
+    }
 }
 
 public class EtiquetaIndex
@@ -53,4 +64,6 @@ public class EtiquetaIndex
     public int Id { get; set; }
 
     public string Nome { get; set; }
+
+    public CategoriaEntity Categoria { get; set; }
 }

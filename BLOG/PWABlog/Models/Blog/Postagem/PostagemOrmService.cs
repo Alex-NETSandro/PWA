@@ -18,6 +18,7 @@ namespace PWABlog.Models.Blog.Postagem
             return _databaseContext.Postagens
                 .Include(p => p.Categoria)
                 .Include(p => p.Revisoes)
+                .Include(p=>p.Autor)
                 .Include(p => p.Comentarios)
                 .ToList();
         }
@@ -25,6 +26,38 @@ namespace PWABlog.Models.Blog.Postagem
         public List<PostagemEntity> ObterPostagensPopulares()
         {
             return _databaseContext.Postagens.Include(p => p.Categoria).ToList();
+        }
+        
+        public PostagemEntity ObterPostagemPorId(int idPostagem)
+        {
+            var postagem = _databaseContext.Postagens.Find(idPostagem);
+
+            return postagem;
+        }
+        public PostagemEntity AddPostagem(PostagemEntity postagem)
+        {
+            var post = new PostagemEntity();
+            post = postagem;
+            _databaseContext.Postagens.Add(post);
+            _databaseContext.SaveChanges();
+
+            return post;
+        }
+
+        public PostagemEntity UpdatePostagem(PostagemEntity post)
+        {
+            var postagem = _databaseContext.Postagens.Where(c => c.Id == post.Id).FirstOrDefault();
+            postagem = post;
+            _databaseContext.Postagens.Update(postagem);
+            _databaseContext.SaveChanges();
+            return postagem;
+        }
+        public PostagemEntity RemovePostagem(int id)
+        {
+            var post = _databaseContext.Postagens.Find(id);
+            _databaseContext.Postagens.Remove(post);
+            _databaseContext.SaveChanges();
+            return post;
         }
     }
 }

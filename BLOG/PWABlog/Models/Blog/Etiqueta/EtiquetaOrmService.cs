@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PWABlog.Models.Blog.Categoria;
 
 namespace PWABlog.Models.Blog.Etiqueta
 {
@@ -93,6 +94,32 @@ namespace PWABlog.Models.Blog.Etiqueta
         {
             return _databaseContext.Etiquetas.Where(c => c.Nome.Contains(nomeEtiqueta)).ToList();
 
+        }
+        
+        public EtiquetaEntity AddEtiqueta(string nomeEtiqueta,CategoriaEntity categoria)
+        {
+            var tag = new EtiquetaEntity{Nome=nomeEtiqueta,Categoria = categoria};
+            _databaseContext.Etiquetas.Add(tag);
+            _databaseContext.SaveChanges();
+
+            return tag;
+        }
+
+        public EtiquetaEntity UpdateEtiqueta(EtiquetaEntity tag)
+        {
+            var etiqueta = _databaseContext.Etiquetas.Where(c => c.Id == tag.Id).FirstOrDefault();
+            etiqueta.Id = tag.Id;
+            etiqueta.Nome = tag.Nome;
+            _databaseContext.Etiquetas.Update(etiqueta);
+            _databaseContext.SaveChanges();
+            return etiqueta;
+        }
+        public EtiquetaEntity RemoveEtiqueta(int id)
+        {
+            var tag = _databaseContext.Etiquetas.Find(id);
+            _databaseContext.Etiquetas.Remove(tag);
+            _databaseContext.SaveChanges();
+            return tag;
         }
     }
 }

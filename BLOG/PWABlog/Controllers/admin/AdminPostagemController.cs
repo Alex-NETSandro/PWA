@@ -1,5 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using NHttp;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using PWABlog.Models.Blog.Autor;
 using PWABlog.Models.Blog.Categoria;
 using PWABlog.Models.Blog.Etiqueta;
@@ -34,8 +42,9 @@ namespace PWABlog.Controllers.admin
             foreach (var postagem in postagens)
             {
                 var post = new PostagemIndex();
-                post.Autor = postagem.Autor;
-                post.Categoria = postagem.Categoria;
+                post.Id = postagem.Id;
+                post.Autor = postagem.Autor.Nome;
+                post.Categoria = postagem.Categoria.Nome;
                 post.Descricao = post.Descricao;
                 post.Revisoes = postagem.Revisoes;
                 post.Titulo = postagem.Titulo;
@@ -74,6 +83,15 @@ namespace PWABlog.Controllers.admin
                 var category = new CategoriaCreate();
                 category.Id = cat.Id;
                 category.Nome = cat.Nome;
+                foreach (var tag in cat.Etiquetas)
+                {
+                    var tagIndex = new EtiquetaIndex();
+                    tagIndex.Categoria = tag.Categoria;
+                    tagIndex.Id = tag.Id;
+                    tagIndex.Nome = tag.Nome;
+                    category.etiquetaIndex.Add(tagIndex);
+                }
+                
                 modal.Categoria.Add(category);
             }
 
@@ -82,6 +100,7 @@ namespace PWABlog.Controllers.admin
                 var tag = new EtiquetaIndex();
                 tag.Id = et.Id;
                 tag.Nome = et.Nome;
+                tag.Categoria = et.Categoria;
                 modal.PostagensEtiqueta.Add(tag);
             }
             return View(modal);
@@ -91,7 +110,37 @@ namespace PWABlog.Controllers.admin
         [Route("admin/postagem/create")]
         public IActionResult Create(AdminPostagemCriarRequestModel request)
         {
-            return View();
+            var postagem = new PostagemEntity();
+            var categoriaId = request.listCategorias;
+            var autorId = request.listAutores;
+            var etiquetaId = request.listEtiquetas;
+
+            var _autorOrmService = new AutorOrmService(_databaseContext);
+            var _categoriaOrmService = new CategoriaOrmService(_databaseContext);
+            var _etiquetaOrmService = new EtiquetaOrmService(_databaseContext);
+
+            var categoria = _categoriaOrmService.ObterCategoriaPorId(categoriaId);
+            var autor = _autorOrmService.ObterAutorPorId(autorId);
+            var etiqueta = _etiquetaOrmService.ObterEtiquetaPorId(etiquetaId);
+            postagem.Autor = autor;
+            postagem.Categoria = categoria;
+            postagem.Descricao = request.Descricao;
+            postagem.Titulo = request.Titulo;
+            postagem.DataHoraPostagem = request.DataHoraPostagem;
+
+            var model = new PostagemIndexViewModel();
+            try
+            {
+                _postagemOrmService.AddPostagem(postagem);
+                model.Message = "Criado com sucesso!!";
+                model.Tipo = "Criar";
+            }
+            catch(Exception e)
+            {
+                TempData["erro-msg"] = e.Message;
+                return RedirectToAction("Create");
+            }
+            return RedirectToAction("Index",new{message = model.Message,tipo = model.Tipo});
         }
 
         [HttpGet]
@@ -131,6 +180,15 @@ namespace PWABlog.Controllers.admin
         {
             return View();
         }
-        
+
+
+        [Route("admin/postagem/descricao/{id?}")]
+        public IActionResult LoadDescricao(int id)
+        {
+            var postagem = _postagemOrmService.ObterPostagemPorId(id);
+            var model = new PostagemLoadDescricaoViewModel();
+            model.Descricao = postagem.Descricao;
+            return View(model);
+        }
     }
 }

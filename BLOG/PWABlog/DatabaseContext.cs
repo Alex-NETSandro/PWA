@@ -1,15 +1,17 @@
-﻿using PWABlog.Models.Blog.Autor;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using PWABlog.Models.Blog.Autor;
 using PWABlog.Models.Blog.Categoria;
 using PWABlog.Models.Blog.Etiqueta;
 using PWABlog.Models.Blog.Postagem;
 using Microsoft.EntityFrameworkCore;
+using PWABlog.Models.AcessControl;
 using PWABlog.Models.Blog.Postagem.Revisao;
 using PWABlog.Models.Blog.Postagem.Classificacao;
 using PWABlog.Models.Blog.Postagem.Comentario;
 
 namespace PWABlog
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext:IdentityDbContext<User,Paper,int>
     {
         public DbSet<CategoriaEntity> Categorias { get; set; }
         

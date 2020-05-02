@@ -1,0 +1,65 @@
+﻿@using PWABlog.ViewModels.Admin.etiqueta
+@model PWABlog.ViewModels.Admin.etiqueta.EtiquetaIndexViewModel
+
+@{
+    ViewBag.Title = @ViewBag.title;
+    Layout = "_Layout";
+}
+
+<!-- Elaboração de uma mensagem correspodende ao tipo de ação realizado no controller-->
+
+@if (Model.Tipo != null)
+{
+        @switch (Model.Tipo)
+        {
+            case "Criar":
+                <div class="alert alert-primary" role="alert">
+                    @Model.Message
+                </div>
+                break;
+            case "Deletar":
+                <div class="alert alert-danger" role="alert">
+                    @Model.Message
+                </div>
+                break;
+            case "Update":
+                <div class="alert alert-primary" role="alert">
+                     @Model.Message
+                </div>
+                break;
+        }
+}
+
+<!-- Action link para adionar uma nova tag  -->
+
+@Html.ActionLink("Nova Tag", "Create", "AdminEtiqueta", null, new { @class = "btn btn-primary" })
+
+<!--Lista todas as etiquetas-->
+
+<table class="table table-bordered ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(EtiquetaIndex tag in Model.Etiquetas)
+        {
+            <tr>
+                <th>@tag.Id</th>
+                <th>@tag.Nome</th>
+                <th>@tag.Categoria.Nome</th>
+                
+                <th>
+                    @Html.ActionLink("Edit","Edit","AdminEtiqueta",new {id = tag.Id})|
+                    @Html.ActionLink("Remove","Remove","AdminEtiqueta",new {id = tag.Id})|
+                    @Html.ActionLink("View","Details","AdminEtiqueta",new{id=tag.Id})
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+

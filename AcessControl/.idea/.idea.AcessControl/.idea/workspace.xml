@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="72d48f39-66b5-435e-946a-1c65ce17191e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Controllers/admin/AdminPostagemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Controllers/admin/AdminPostagemController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Etiqueta/EtiquetaEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Etiqueta/EtiquetaEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Etiqueta/EtiquetaOrmService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Etiqueta/EtiquetaOrmService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Postagem/PostagemEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Postagem/PostagemEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Postagem/PostagemOrmService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Models/Blog/Postagem/PostagemOrmService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/PWABlog.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/PWABlog.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/RequestModels/postagem/AdminPostagemCriarRequestModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/RequestModels/postagem/AdminPostagemCriarRequestModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/ViewModels/Admin/postagem/PostagemCreateViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/ViewModels/Admin/postagem/PostagemCreateViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/ViewModels/Admin/postagem/PostagemIndexViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/ViewModels/Admin/postagem/PostagemIndexViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Views/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Views/adminPostagem/Create.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Views/adminPostagem/Create.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BLOG/PWABlog/Views/adminPostagem/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/../BLOG/PWABlog/Views/adminPostagem/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Blog/.vs/Blog/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Blog/.vs/Blog/v16/.suo" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1bN0TFRaGVqKDTO7I73dk289UO5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.AcessControl">
+    <configuration name="AcessControl" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/AcessControl/AcessControl.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="AcessControl" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="AcessControl: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/AcessControl/AcessControl.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="72d48f39-66b5-435e-946a-1c65ce17191e" name="Default Changelist" comment="" />
+      <created>1588457249853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588457249853</updated>
+      <workItem from="1588457495143" duration="69000" />
+    </task>
+    <servers />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

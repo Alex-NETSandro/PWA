@@ -8,6 +8,7 @@
 
 @using(Html.BeginForm("Create","AdminPostagem",FormMethod.Post))
     {
+        
         <div class="form-group">
             @Html.Label(null,"Titulo",new{@for="titulo"})
             @Html.EditorFor(model =>model.Titulo,new{htmlAttributes = new{@class="form-control",@type="Text",@id="titulo",@placeholder="Nome do Titulo"}} )
@@ -15,6 +16,10 @@
         <div class="form-group">
             @Html.Label(null,"Descrição",new{@for="descricao"})
             @Html.EditorFor(model =>model.Descricao,new{htmlAttributes = new{@class="form-control",@type="Text",@id="descricao",@placeholder="Descricão"}} )
+        </div>
+        <div class="form-group">
+            @Html.Label(null,"Data e Hora",new{@for="dataHora"})
+            @Html.EditorFor(model =>model.DataHoraPostagem,new{htmlAttributes = new{@class="form-control",@type="Text",@id="dataHora",@placeholder="Data Hora"}} )
         </div>
         @if(Model.Autor.Count != 0)
         {
@@ -41,23 +46,22 @@
                     }
                 </select>
             </div>
-           
         }else{
             @Html.ActionLink("Nova Categoria","Create","AdminCategoria",null,new{@class="btn btn-primary"})
         }
-        @if (Model.PostagensEtiqueta.Count!=0)
+        @if (Model.PostagensEtiqueta.Count != 0)
         {
             <div class="form-group">
                 @Html.Label(null,"Etiqueta",new{@for="etiqueta"})
                 <select class="form-control" name="listEtiquetas" id="etiqueta">
-                    @foreach (var etiqueta in Model.PostagensEtiqueta)
+                    @foreach (var tag in Model.PostagensEtiqueta)
                     {
-                        <option class="list-group-item" value="@etiqueta.Id">@etiqueta.Nome</option>
+                        <option class="list-group-item" value="@tag.Id">@tag.Nome</option>
                     }
                 </select>
             </div>
         }else{
-            @Html.ActionLink("Nova Etiqueta","Edit","AdminPostagem",null,new{@class="btn btn-primary"})
+            @Html.ActionLink("Nova Etiqueta","Create","AdminEtiqueta",null,new{@class="btn btn-primary"})
         }
         <div>
             <input type="submit" class="btn btn-primary" value="Gravar">

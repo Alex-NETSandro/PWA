@@ -38,36 +38,37 @@
 
 <table class="table table-bordered ">
     <thead class="thead-dark">
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Titulo</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Autor</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Etiquetas</th>
-            <th scope="col">Revisões</th>
-            <th scope="col">Data e Hora</th>
-        </tr>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Etiquetas</th>
+        <th scope="col">Revisões</th>
+        <th scope="col">Data e Hora</th>
+        <th scope="col">Ações</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach(var postagem in Model.Postagens)
-        {
-            <tr>
-                <th>@postagem.Id</th>
-                <th>@postagem.Titulo</th>
-                <th>@postagem.Descricao</th>
-                <th>@postagem.Autor</th>
-                <th>@postagem.Categoria</th>
-                <th>@Html.ActionLink("Etiquetas","ListEtiqueta","AdminPostagem",null,new{@class="btn btn-primary"})</th>
-                <th>@Html.ActionLink("Revisões","ListRevisao","AdminPostagem",null,new{@class="btn btn-primary"})</th>
-                <th>@postagem.DataHoraPostagem</th>
+    @foreach(var postagem in Model.Postagens)
+    {
+        <tr>
+            <th>@postagem.Id</th>
+            <th>@postagem.Titulo</th>
+            <th>@Html.ActionLink("Descrição","LoadDescricao","AdminPostagem",new {id = postagem.Id},new{@class="btn btn-primary"})</th>
+            <th>@postagem.Autor</th>
+            <th>@postagem.Categoria</th>
+            <th>@Html.ActionLink("Etiquetas","ListEtiqueta","AdminPostagem",null,new{@class="btn btn-primary"})</th>
+            <th>@Html.ActionLink("Revisões","ListRevisao","AdminPostagem",null,new{@class="btn btn-primary"})</th>
+            <th>@postagem.DataHoraPostagem</th>
                 
-                <th>
-                    @Html.ActionLink("Edit","Edit","AdminPostagem",new {id = postagem.Id})|
-                    @Html.ActionLink("Remove","Remove","AdminPostagem",new {id = postagem.Id})|
-                    @Html.ActionLink("View","Details","AdminPostagem",new{id = postagem.Id})
-                </th>
-            </tr>
-        }
+            <th>
+                @Html.ActionLink("Edit","Edit","AdminPostagem",new {id = postagem.Id})|
+                @Html.ActionLink("Remove","Remove","AdminPostagem",new {id = postagem.Id})|
+                @Html.ActionLink("View","Details","AdminPostagem",new{id = postagem.Id})
+            </th>
+        </tr>
+    }
     </tbody>
 </table>

@@ -6,24 +6,19 @@ using System.ComponentModel.DataAnnotations;
 using PWABlog.Models.Blog.Postagem.Classificacao;
 using PWABlog.Models.Blog.Postagem.Comentario;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PWABlog.Models.Blog.Postagem
 {
     public class PostagemEntity
     {
-        [Key] 
-        public int Id { get; set; }
+        [Key] [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int Id { get; set; }
 
-        [MaxLength(128)] 
-        [Required] 
-        public string Titulo { get; set; }
+        [MaxLength(128)] [Required] public string Titulo { get; set; }
         
-        [MaxLength(640)]
-        [Required]
-        public string Descricao { get; set; }
+        [MaxLength(640)][Required] public string Descricao { get; set; }
 
-        [Required]
-        public DateTime DataHoraPostagem { get; set; }
+        [Required] public DateTime DataHoraPostagem { get; set; }
 
         public AutorEntity Autor { get; set; }
         
@@ -36,7 +31,6 @@ namespace PWABlog.Models.Blog.Postagem
         public ICollection<ComentarioEntity> Comentarios { get; set; }
 
         public ICollection<ClassificacaoEntity> Classificacoes { get; set; }
-
 
         public PostagemEntity()
         {
