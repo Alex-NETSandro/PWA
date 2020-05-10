@@ -22,7 +22,8 @@ namespace PWABlog.ViewModels.Admin.postagem
 
         public string Descricao { get; set; }
 
-        public DateTime DataHoraPostagem { get; set; }
+        public string Data { get; set; }
+        public string Hora { get; set; }
 
         public ICollection<AutorCreate> Autor { get; set; }
 

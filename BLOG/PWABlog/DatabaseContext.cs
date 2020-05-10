@@ -19,8 +19,7 @@ namespace PWABlog
         
         public DbSet<EtiquetaEntity> Etiquetas { get; set; }
         
-        public DbSet<PostagemEntity> Postagens { get; set; }
-        
+        public  DbSet<PostagemEntity> Postagens { get; set; }
         public DbSet<RevisaoEntity> Revisoes { get; set; }
         
         public DbSet<ComentarioEntity> Comentarios { get; set; }

@@ -1,4 +1,5 @@
 ﻿@using PWABlog.ViewModels.Admin.autor
+@using Microsoft.AspNetCore.Mvc.Routing
 @model PWABlog.ViewModels.Admin.autor.AutorIndexViewModel
 
 @{
@@ -51,9 +52,9 @@
                 <th>@autor.Id</th>
                 <th>@autor.Nome</th>
                 <th>
-                    @Html.ActionLink("Edit","Edit","AdminAutor",new {id = autor.Id})|
-                    @Html.ActionLink("Remove","Remove","AdminAutor",new {id = autor.Id})|
-                    @Html.ActionLink("View","Details","AdminAutor",new{id = autor.Id})
+                    <a class="btn" href= @Url.Action("Edit","AdminAutor",new {id = autor.Id})><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>|
+                    <a class="btn" href= @Url.Action("Remove","AdminAutor",new {id = autor.Id})><i class="fa fa-trash" aria-hidden="true"> Deletar</i></a>|
+                    <a class="btn" href= @Url.Action("Details","AdminAutor",new {id = autor.Id})><i class="fa fa-eye" aria-hidden="true"> View</i></a>
                 </th>
             </tr>
         }

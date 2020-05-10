@@ -18,7 +18,8 @@ namespace PWABlog.RequestModels.postagem
         
         public string Descricao { get; set; }
 
-        public DateTime DataHoraPostagem { get; set; }
+        public string Data { get; set; }
+        public string Hora { get; set; }
 
         public int listAutores { get; set; }
         

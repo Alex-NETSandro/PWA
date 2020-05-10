@@ -18,7 +18,8 @@ namespace PWABlog.Models.Blog.Postagem
         
         [MaxLength(640)][Required] public string Descricao { get; set; }
 
-        [Required] public DateTime DataHoraPostagem { get; set; }
+        [Required] public string Data { get; set; }
+        [Required] public string Time { get; set; }
 
         public AutorEntity Autor { get; set; }
         

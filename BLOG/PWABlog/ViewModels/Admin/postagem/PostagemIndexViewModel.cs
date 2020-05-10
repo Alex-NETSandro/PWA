@@ -32,11 +32,11 @@ namespace PWABlog.ViewModels.Admin.postagem
         
         public string Descricao { get; set; }
 
-        public DateTime DataHoraPostagem { get; set; }
-
-        public String Autor { get; set; }
+        public string Data { get; set; }
+        public string Time { get; set; }
+        public string Autor { get; set; }
         
-        public String Categoria { get; set; }
+        public string Categoria { get; set; }
 
         public List<PostagemEtiquetaEntity> PostagensEtiquetas { get; set; }
 

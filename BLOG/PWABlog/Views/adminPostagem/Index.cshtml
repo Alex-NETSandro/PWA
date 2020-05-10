@@ -61,12 +61,12 @@
             <th>@postagem.Categoria</th>
             <th>@Html.ActionLink("Etiquetas","ListEtiqueta","AdminPostagem",null,new{@class="btn btn-primary"})</th>
             <th>@Html.ActionLink("Revisões","ListRevisao","AdminPostagem",null,new{@class="btn btn-primary"})</th>
-            <th>@postagem.DataHoraPostagem</th>
+            <th>@postagem.Data @postagem.Time</th>
                 
             <th>
-                @Html.ActionLink("Edit","Edit","AdminPostagem",new {id = postagem.Id})|
-                @Html.ActionLink("Remove","Remove","AdminPostagem",new {id = postagem.Id})|
-                @Html.ActionLink("View","Details","AdminPostagem",new{id = postagem.Id})
+               <a class="btn" href=@Url.Action("Edit","AdminPostagem",new {id = postagem.Id})><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>|
+                <a class="btn" href=@Url.Action("Remove","AdminPostagem",new {id = postagem.Id})><i class="fa fa-trash" aria-hidden="true"> Deletar</i></a>|
+                <a class="btn" href=@Url.Action("Details","AdminPostagem",new {id = postagem.Id})><i class="fa fa-eye" aria-hidden="true"> View</i></a>
             </th>
         </tr>
     }

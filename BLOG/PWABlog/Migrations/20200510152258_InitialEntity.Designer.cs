@@ -9,7 +9,7 @@ using PWABlog;
 namespace PWABlog.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200502223426_InitialEntity")]
+    [Migration("20200510152258_InitialEntity")]
     partial class InitialEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -330,13 +330,18 @@ namespace PWABlog.Migrations
                     b.Property<int?>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataHoraPostagem")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("varchar(640) CHARACTER SET utf8mb4")
                         .HasMaxLength(640);
+
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

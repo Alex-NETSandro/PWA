@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace PWABlog.Models.Blog.Postagem
@@ -41,6 +42,14 @@ namespace PWABlog.Models.Blog.Postagem
             _databaseContext.Postagens.Add(post);
             _databaseContext.SaveChanges();
 
+            return post;
+        }
+        public async Task<PostagemEntity> AsyncAddPostagem(PostagemEntity postagem)
+        {
+            var post = new PostagemEntity();
+            post = postagem; 
+            _databaseContext.Postagens.AddAsync(post);
+            _databaseContext.SaveChangesAsync();
             return post;
         }
 

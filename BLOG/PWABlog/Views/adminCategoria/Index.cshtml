@@ -51,9 +51,11 @@
                 <th>@categoria.CategoriaId</th>
                 <th>@categoria.Nome</th>
                 
-                <th>@Html.ActionLink("Edit","Edit","AdminCategoria",new {id = categoria.CategoriaId})|
-                    @Html.ActionLink("Remove","Remove","AdminCategoria",new {id = categoria.CategoriaId})|
-                    @Html.ActionLink("View","Details","AdminCategoria",new{id=categoria.CategoriaId})</th>
+                <th>
+                    <a class="btn" href=@Url.Action("Edit","AdminCategoria",new {id = categoria.CategoriaId})><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>|
+                    <a class="btn" href=@Url.Action("Remove","AdminCategoria",new {id = categoria.CategoriaId})><i class="fa fa-trash" aria-hidden="true"> Deletar</i></a>|
+                    <a class="btn" href=@Url.Action("Details","AdminCategoria",new {id = categoria.CategoriaId})><i class="fa fa-eye" aria-hidden="true"> View</i></a>
+                </th>
             </tr>
         }
     </tbody>

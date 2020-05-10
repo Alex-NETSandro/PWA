@@ -54,9 +54,9 @@
                 <th>@tag.Categoria.Nome</th>
                 
                 <th>
-                    @Html.ActionLink("Edit","Edit","AdminEtiqueta",new {id = tag.Id})|
-                    @Html.ActionLink("Remove","Remove","AdminEtiqueta",new {id = tag.Id})|
-                    @Html.ActionLink("View","Details","AdminEtiqueta",new{id=tag.Id})
+                    <a class="btn" href=@Url.Action("Edit","AdminEtiqueta",new {id = tag.Id})><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>|
+                    <a class="btn" href=@Url.Action("Remove","AdminEtiqueta",new {id = tag.Id})><i class="fa fa-trash" aria-hidden="true"> Deletar</i></a>|
+                    <a class="btn" href=@Url.Action("Details","AdminEtiqueta",new {id = tag.Id})><i class="fa fa-eye" aria-hidden="true"> View</i></a>
                 </th>
             </tr>
         }

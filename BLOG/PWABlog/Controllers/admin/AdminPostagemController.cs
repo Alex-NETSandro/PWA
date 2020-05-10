@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NHttp;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using PWABlog.Models.Blog.Autor;
@@ -24,11 +30,13 @@ namespace PWABlog.Controllers.admin
         private readonly CategoriaOrmService _categoriaOrmService;
         private readonly EtiquetaOrmService _etiquetaOrmService;
         private readonly DatabaseContext _databaseContext;
+        private readonly IServiceScopeFactory _serviceScopeFactory;
 
-        public AdminPostagemController(PostagemOrmService postagemOrmService,DatabaseContext databaseContext)
+        public AdminPostagemController(PostagemOrmService postagemOrmService,DatabaseContext databaseContext, IServiceScopeFactory serviceScopeFactory)
         {
             _postagemOrmService = postagemOrmService;
             _databaseContext = databaseContext;
+            _serviceScopeFactory = serviceScopeFactory;
         }
         
         [Route("admin/postagem/index")]
@@ -49,7 +57,8 @@ namespace PWABlog.Controllers.admin
                 post.Revisoes = postagem.Revisoes;
                 post.Titulo = postagem.Titulo;
                 post.PostagensEtiquetas = postagem.PostagensEtiquetas;
-                post.DataHoraPostagem = postagem.DataHoraPostagem;
+                post.Data = postagem.Data;
+                post.Time = postagem.Time;
                 model.Postagens.Add(post);
             }
             return View(model);
@@ -110,6 +119,8 @@ namespace PWABlog.Controllers.admin
         [Route("admin/postagem/create")]
         public IActionResult Create(AdminPostagemCriarRequestModel request)
         {
+            var today = DateTime.Now;
+
             var postagem = new PostagemEntity();
             var categoriaId = request.listCategorias;
             var autorId = request.listAutores;
@@ -126,21 +137,53 @@ namespace PWABlog.Controllers.admin
             postagem.Categoria = categoria;
             postagem.Descricao = request.Descricao;
             postagem.Titulo = request.Titulo;
-            postagem.DataHoraPostagem = request.DataHoraPostagem;
+            postagem.Data = request.Data;
+            postagem.Time = request.Hora;
+            var date = String.Format("{0:yyyy-MM-dd}", today);
+            var hora = String.Format("{0:HH:mm}", today);
+            if (date == postagem.Data && hora==postagem.Time)
+            {
+                var model = new PostagemIndexViewModel();
+                try
+                {
+                    _postagemOrmService.AddPostagem(postagem);
+                    model.Message = "Criado com sucesso!!";
+                    model.Tipo = "Criar";    
+                }
+                catch (Exception e)
+                {
+                    TempData["erro-msg"] = e.Message;
+                    return RedirectToAction("Create");
+                }
 
-            var model = new PostagemIndexViewModel();
-            try
-            {
-                _postagemOrmService.AddPostagem(postagem);
-                model.Message = "Criado com sucesso!!";
-                model.Tipo = "Criar";
+                return RedirectToAction("Index", new {message = model.Message, tipo = model.Tipo});
             }
-            catch(Exception e)
+            else
             {
-                TempData["erro-msg"] = e.Message;
-                return RedirectToAction("Create");
+                var doPost = Task.Run(()=>DoPost(postagem,_serviceScopeFactory));
+
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index",new{message = model.Message,tipo = model.Tipo});
+        }
+
+        public async Task<IActionResult> DoPost(PostagemEntity postagem,IServiceScopeFactory serviceScopeFactory)
+        {
+            {
+                var model = new PostagemIndexViewModel();
+                while (model.Message == null)
+                {
+                    var today = DateTime.Now;
+                    var date = string.Format("{0:yyyy-MM-dd}", today);
+                    var hora = string.Format("{0:HH:mm}", today);
+                    if (date == postagem.Data && hora == postagem.Time)
+                    {
+                        var scope = serviceScopeFactory.CreateScope();
+                        scope.ServiceProvider.GetService<PostagemOrmService>().AddPostagem(postagem);
+                        model.Message = "Salvo";
+                    }
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
