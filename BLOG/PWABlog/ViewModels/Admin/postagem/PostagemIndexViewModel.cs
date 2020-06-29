@@ -9,16 +9,16 @@ using PWABlog.Models.Blog.Postagem.Revisao;
 
 namespace PWABlog.ViewModels.Admin.postagem
 {
-    public class PostagemIndexViewModel
+    public class PostagemIndexViewModel:ViewModelAdminArea
     {
         public ICollection<PostagemIndex> Postagens { get; set; }
 
         public string Tipo { get; set; }
         public string Message { get; set; }
-        public string Title { get; set; }
-        
+
         public PostagemIndexViewModel(){
             Postagens = new List<PostagemIndex>();
+            TitlePage = "Posts";
         }
     }
 

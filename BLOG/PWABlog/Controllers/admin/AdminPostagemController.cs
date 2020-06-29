@@ -44,7 +44,6 @@ namespace PWABlog.Controllers.admin
         public IActionResult Index()
         {
             var model = new PostagemIndexViewModel();
-            model.Title = "Postagens";
             var postagens = _postagemOrmService.ObterPostagens();
 
             foreach (var postagem in postagens)

@@ -2,11 +2,6 @@
 @using Microsoft.AspNetCore.Mvc.Routing
 @model PWABlog.ViewModels.Admin.autor.AutorIndexViewModel
 
-@{
-    ViewBag.Title = @Model.Title;
-    Layout = "_Layout";
-}
-
 <!-- Elaboração de uma mensagem correspodende ao tipo de ação realizado no controller-->
 
 @if (Model.Tipo != null)

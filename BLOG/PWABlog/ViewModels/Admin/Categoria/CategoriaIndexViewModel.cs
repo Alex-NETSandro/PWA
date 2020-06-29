@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PWABlog.ViewModels.Admin.Categoria
 {
-    public class CategoriaIndexViewModel
+    public class CategoriaIndexViewModel:ViewModelAdminArea
     {
         public ICollection<CategoriaIndex> Categorias { get; set; }
         public string Message { get; set; }
@@ -14,6 +14,7 @@ namespace PWABlog.ViewModels.Admin.Categoria
         public CategoriaIndexViewModel()
         {
             Categorias = new List<CategoriaIndex>();
+            TitlePage = "Categories";
         }
     }
 

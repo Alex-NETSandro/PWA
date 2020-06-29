@@ -29,13 +29,16 @@ namespace PWABlog
         public void ConfigureServices(IServiceCollection services)
         {
             //Add the access control engine service
-            services.AddIdentity<User, Paper>(options =>
+            services.AddIdentity<User,Paper>(options =>
             {
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequiredLength = 6;
+            }).AddEntityFrameworkStores<DatabaseContext>().AddErrorDescriber<DescriptorError>();
 
-            }).AddEntityFrameworkStores<DatabaseContext>();
-            
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login";
+            });
             // Adicionar o serviço do banco de dados
             services.AddDbContext<DatabaseContext>();
             
@@ -44,6 +47,7 @@ namespace PWABlog
             services.AddTransient<PostagemOrmService>();
             services.AddTransient<AutorOrmService>();
             services.AddTransient<EtiquetaOrmService>();
+            services.AddTransient<ControlAcessService>();
 
             // Adicionar os serviços que possibilitam o funcionamento dos controllers e das views
             services.AddControllersWithViews();
@@ -75,6 +79,7 @@ namespace PWABlog
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                
             });
         }
     }

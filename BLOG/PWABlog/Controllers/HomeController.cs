@@ -27,23 +27,21 @@ namespace PWABlog.Controllers
             _categoriaOrmService = categoriaOrmService;
             _postagemOrmService = postagemOrmService;
         }
-
-        [Route("")]
+        
         [Route("Home")]
         [Route("Home/Index")]
         [Route("Home/Index/{id?}")]
         public IActionResult Index()
         {   
             // Instanciar a ViewModel
-            HomeIndexViewModel model = new HomeIndexViewModel();
-            model.TituloPagina = "Página Home";
-            
+            var model = new HomeIndexViewModel();
+
             // Alimentar a lista de postagens que serão exibidas na view
-            List<PostagemEntity> listaPostagens = _postagemOrmService.ObterPostagens();
+            var listaPostagens = _postagemOrmService.ObterPostagens();
             
-            foreach (PostagemEntity postagem in listaPostagens)
+            foreach (var postagem in listaPostagens)
             {
-                PostagemHomeIndex postagemHomeIndex = new PostagemHomeIndex();
+                var postagemHomeIndex = new PostagemHomeIndex();
                 postagemHomeIndex.Titulo = postagem.Titulo;
                 postagemHomeIndex.Descricao = postagem.Descricao;
                 postagemHomeIndex.Categoria = postagem.Categoria.Nome;
@@ -51,7 +49,7 @@ namespace PWABlog.Controllers
                 postagemHomeIndex.PostagemId = postagem.Id.ToString();
                 
                 // Obter última revisão
-                RevisaoEntity ultimaRevisao = postagem.Revisoes.OrderByDescending(o => o.DataCriacao).FirstOrDefault();
+                var ultimaRevisao = postagem.Revisoes.OrderByDescending(o => o.DataCriacao).FirstOrDefault();
                 if (ultimaRevisao != null)
                 {
                     postagemHomeIndex.Data = ultimaRevisao.DataCriacao.ToLongDateString();
@@ -61,20 +59,20 @@ namespace PWABlog.Controllers
             }
           
             // Alimentar a lista de categorias que serão exibidas na view
-            List<CategoriaEntity> listaCategorias = _categoriaOrmService.ObterCategorias();
+            var listaCategorias = _categoriaOrmService.ObterCategorias();
 
-            foreach (CategoriaEntity categoria in listaCategorias)
+            foreach (var categoria in listaCategorias)
             {
-                CategoriaHomeIndex categoriaHomeIndex = new CategoriaHomeIndex();
+                var categoriaHomeIndex = new CategoriaHomeIndex();
                 categoriaHomeIndex.Nome = categoria.Nome;
                 categoriaHomeIndex.CategoriaId = categoria.Id.ToString();
                 
                 model.Categorias.Add(categoriaHomeIndex);
             
                 // Alimentar a lista de etiquetas que serão exibidas na view, a partir das etiquetas da categoria
-                foreach (EtiquetaEntity etiqueta in categoria.Etiquetas)
+                foreach (var etiqueta in categoria.Etiquetas)
                 {
-                    EtiquetaHomeIndex etiquetaHomeIndex = new EtiquetaHomeIndex();
+                    var etiquetaHomeIndex = new EtiquetaHomeIndex();
                     etiquetaHomeIndex.Nome = etiqueta.Nome;
                     etiquetaHomeIndex.EtiquetaId = etiqueta.Id.ToString();
                 
@@ -85,10 +83,10 @@ namespace PWABlog.Controllers
 
             // Alimentar a lista de postagens populares que serão exibidas na view
             // TODO Obter lista de postagens populares
-            List<PostagemEntity> listaPostagensPopulares = _postagemOrmService.ObterPostagensPopulares();
-            foreach (PostagemEntity postagemPopular in listaPostagensPopulares)
+            var listaPostagensPopulares = _postagemOrmService.ObterPostagensPopulares();
+            foreach (var postagemPopular in listaPostagensPopulares)
             {
-                PostagemPopularHomeIndex postagemPopularHomeIndex = new PostagemPopularHomeIndex();
+                var postagemPopularHomeIndex = new PostagemPopularHomeIndex();
                 postagemPopularHomeIndex.Titulo = postagemPopular.Titulo;
                 postagemPopularHomeIndex.PostagemId = postagemPopular.Id;
                 postagemPopularHomeIndex.Categoria = postagemPopular.Categoria.Nome;

@@ -1,11 +1,6 @@
 ﻿@using PWABlog.ViewModels.Admin.postagem
 @model PWABlog.ViewModels.Admin.postagem.PostagemIndexViewModel
 
-@{
-    ViewBag.Title = @Model.Title;
-    Layout = "_Layout";
-}
-
 <!-- Elaboração de uma mensagem correspodende ao tipo de ação realizado no controller-->
 
 @if (Model.Tipo != null)

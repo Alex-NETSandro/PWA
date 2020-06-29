@@ -1,0 +1,12 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.TitlePage</title>
+</head>
+<body>
+<h1>Usuário</h1>
+@User.Identity.Name
+@Html.ActionLink("Logout","Logout","ControlAcess",new{@class="btn btn-primary"})
+@RenderBody()
+</body>
+</html>

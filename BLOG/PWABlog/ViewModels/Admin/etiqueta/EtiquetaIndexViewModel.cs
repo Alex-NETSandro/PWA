@@ -3,7 +3,7 @@ using PWABlog.Models.Blog.Categoria;
 
 namespace PWABlog.ViewModels.Admin.etiqueta
 {
-    public class EtiquetaIndexViewModel
+    public class EtiquetaIndexViewModel:ViewModelAdminArea
     {
         public ICollection<EtiquetaIndex> Etiquetas { get; set; }
         public string Message { get; set; }
@@ -12,6 +12,7 @@ namespace PWABlog.ViewModels.Admin.etiqueta
         public EtiquetaIndexViewModel()
         {
             Etiquetas = new List<EtiquetaIndex>();
+            TitlePage = "Tags";
         }
     }
 

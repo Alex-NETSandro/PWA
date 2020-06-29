@@ -1,15 +1,15 @@
 ﻿@using PWABlog.ViewModels.Home
 @model PWABlog.ViewModels.Home.HomeIndexViewModel
 @{
-    ViewData["Title"] = "Blog PWA - 2020.1";
+   
 }
 
-<h1>@Model.TituloPagina</h1>
+<h1>@Model.TitlePage</h1>
 
 <!-- Conteúdo Principal -->
 <div class="w3-col l8 s12">
     <!-- Postagens -->
-    @foreach (PostagemHomeIndex postagem in @Model.Postagens)
+    @foreach (var postagem in @Model.Postagens)
     {
         <div class="w3-card-4 w3-margin w3-white">
             <img src="https://i.ytimg.com/vi/HfnabAnJRZE/maxresdefault.jpg" alt="@postagem.Titulo" style="width:100%">
@@ -55,7 +55,7 @@
         </div>
         <div class="w3-container w3-white">
             <p>
-                @foreach (CategoriaHomeIndex categoria in @Model.Categorias)
+                @foreach (var categoria in @Model.Categorias)
                 {
                     <span class="w3-tag w3-light-grey w3-margin-bottom">@categoria.Nome</span>
                 }
@@ -70,7 +70,7 @@
         </div>
         <div class="w3-container w3-white">
             <p>
-                @foreach (EtiquetaHomeIndex etiqueta in @Model.Etiquetas)
+                @foreach (var etiqueta in @Model.Etiquetas)
                 {
                     <span class="w3-tag w3-light-grey w3-margin-bottom">@etiqueta.Nome</span>
                 }
@@ -84,7 +84,7 @@
             <h4>Postagens Populares</h4>
         </div>
         <ul class="w3-ul w3-hoverable w3-white">
-            @foreach (PostagemPopularHomeIndex postagemPopular in @Model.PostagensPopulares)
+            @foreach (var postagemPopular in @Model.PostagensPopulares)
             {
                 <li class="w3-padding-16">
                     <img src="https://i.ytimg.com/vi/HfnabAnJRZE/maxresdefault.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">

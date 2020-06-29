@@ -1,0 +1,22 @@
+﻿@model PWABlog.ViewModels.ControlAcess.ControlAcessLoginViewModel
+
+<p>@Model.RegisterMenssage</p>
+
+<p>@Model.LoginMenssage</p>
+
+<div class="col-sm-12 col-md-12">
+    @using (Html.BeginForm("Login", "ControlAcess",FormMethod.Post,new{@class="align-items-center"}))
+        {
+            <div class="col-sm-12 col-md-3 form-group">
+                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control mr-sm-2", @type = "Email", @id = "email", @value = @Model.Email, @placeHolder = "Email"}})
+            </div>
+            <div class="col-sm-12 col-md-3 form-group">
+                @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control mr-sm-2", @type = "Password", @id = "passwword", @value = @Model.Password, @placeHolder = "Password"}})
+            </div>
+            <div class="col-sm-12 col-md-3 d-flex justify-content-between">
+                @Html.ActionLink("Register", "Register", "ControlAcess", null, new {@class = "btn btn-primary", @type = "button"})
+                <button class="btn btn-primary" type="submit">Logar</button>
+            </div>
+        }
+</div>
+

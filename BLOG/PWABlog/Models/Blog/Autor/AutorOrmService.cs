@@ -85,7 +85,6 @@ namespace PWABlog.Models.Blog.Autor
         public List<AutorEntity> PesquisarAutorPorNome(string nomeAutor)
         {
             return _databaseContext.Autores.Where(c => c.Nome.Contains(nomeAutor)).ToList();
-            
         }
         
         public AutorEntity AddAutor(string nomeAutor)

@@ -25,8 +25,6 @@ namespace PWABlog
         public DbSet<ComentarioEntity> Comentarios { get; set; }
         
         public DbSet<ClassificacaoEntity> Classificacoes { get; set; }
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -49,7 +47,6 @@ namespace PWABlog
             modelBuilder.Entity<PostagemEtiquetaEntity>()
                 .HasOne(pe => pe.Etiqueta)
                 .WithMany(e => e.PostagensEtiquetas);
-                
         }
     }
 }

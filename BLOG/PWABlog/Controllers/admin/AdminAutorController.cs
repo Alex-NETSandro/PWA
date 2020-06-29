@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PWABlog.Models.Blog.Autor;
 using PWABlog.RequestModels.autor;
 using PWABlog.ViewModels.Admin.autor;
+// ReSharper disable All
 
 namespace PWABlog.Controllers.admin
 {
@@ -20,7 +21,6 @@ namespace PWABlog.Controllers.admin
         public IActionResult Index()
         {
             var model = new AutorIndexViewModel();
-            model.Title = "Lista de Autores";
             var autores = _autorOrmService.ObterAutores();
 
             foreach (var autor in autores)
