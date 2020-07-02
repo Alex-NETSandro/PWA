@@ -20,7 +20,7 @@ namespace PWABlog.Models.AcessControl
             var result = await _signInManager.PasswordSignInAsync(user, password,false,false);
             if (!result.Succeeded)
             {
-                throw new Exception("User or passaword disabled");
+                throw new Exception("User or passaword incorrect");
             }
         }
 

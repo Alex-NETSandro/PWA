@@ -1,11 +1,6 @@
 ﻿@using PWABlog.ViewModels.Admin.autor
 @model PWABlog.ViewModels.Admin.autor.AutorDetailsViewModel
 
-@{
-    ViewBag.Title = "View";
-    Layout = "_Layout";
-}
-
 <div class="form-group">
     @Html.Label(null,"Id",new{@for="idAutor"})
     @Html.EditorFor(model =>model.Id,new{htmlAttributes = new{@class="form-control",@type="numeric",@id="idAutor",@value = @Model.Id,@disabled=true}} )

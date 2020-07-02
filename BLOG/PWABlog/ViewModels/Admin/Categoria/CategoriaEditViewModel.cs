@@ -6,7 +6,7 @@ using PWABlog.Models.Blog.Postagem;
 
 namespace PWABlog.ViewModels.Admin.Categoria
 {
-    public class CategoriaEditViewModel
+    public class CategoriaEditViewModel:ViewModelAdminArea
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -18,7 +18,7 @@ namespace PWABlog.ViewModels.Admin.Categoria
         {
             Postagens = new List<PostagemEntity>();
             Etiquetas = new List<EtiquetaEntity>();
-            
+            TitlePage = "Edit Category";
         }
     }
 }

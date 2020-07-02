@@ -1,11 +1,6 @@
 ﻿@using PWABlog.ViewModels.Admin.Categoria
 @model PWABlog.ViewModels.Admin.Categoria.CategoriaDetailsViewModel
 
-@{
-    ViewBag.Title = "View";
-    Layout = "_Layout";
-}
-
 <div class="form-group">
     @Html.Label(null,"Id",new{@for="idCategoria"})
     @Html.EditorFor(model =>model.Id,new{htmlAttributes = new{@class="form-control",@type="numeric",@id="idCategoria",@value = @Model.Id,@disabled=true}} )

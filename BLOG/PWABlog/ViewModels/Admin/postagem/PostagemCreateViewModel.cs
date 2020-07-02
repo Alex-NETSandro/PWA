@@ -15,7 +15,7 @@ using PWABlog.Models.Blog.Postagem.Revisao;
 
 namespace PWABlog.ViewModels.Admin.postagem
 {
-    public class PostagemCreateViewModel
+    public class PostagemCreateViewModel:ViewModelAdminArea
     {
         public string Title { get; set; }
         public string Titulo { get; set; }
@@ -36,6 +36,7 @@ namespace PWABlog.ViewModels.Admin.postagem
             Autor = new List<AutorCreate>();
             Categoria = new List<CategoriaCreate>();
             PostagensEtiqueta = new List<EtiquetaIndex>();
+            Title = "Create Posts";
         }
     }
 

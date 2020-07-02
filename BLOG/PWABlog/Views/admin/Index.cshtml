@@ -1,8 +1,19 @@
 ﻿@model PWABlog.ViewModels.Admin.admin.AdminViewModel
-
-@{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
-}
-
-<h2>title</h2>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Posts</th>
+            <th scope="col">Authors</th>
+            <th scope="col">Categories</th>
+            <th scope="col">Tags</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>@Model.Posts</th>
+            <th scope="row">@Model.Author</th>
+            <td>@Model.Category</td>
+            <td>@Model.Tags</td>
+        </tr>
+    </tbody>
+</table>

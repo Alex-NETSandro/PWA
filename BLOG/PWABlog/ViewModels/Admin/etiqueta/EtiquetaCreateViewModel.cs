@@ -2,7 +2,7 @@
 
 namespace PWABlog.ViewModels.Admin.etiqueta
 {
-    public class EtiquetaCreateViewModel
+    public class EtiquetaCreateViewModel:ViewModelAdminArea
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -12,12 +12,13 @@ namespace PWABlog.ViewModels.Admin.etiqueta
         public EtiquetaCreateViewModel()
         {
             Categoria = new List<EtiquetaCategoriaCreate>();
+            TitlePage = "Create Tag";
         }
     }
     
-    public class EtiquetaCategoriaCreate{
+    public class EtiquetaCategoriaCreate
+    {
         public int Id { get; set; }
-
         public string Nome { get; set; }
     }
 }

@@ -20,7 +20,9 @@
             </div>
            
         }else{
-            @Html.ActionLink("Nova Categoria","Create","AdminCategoria",null,new{@class="btn btn-primary"})
+            <div class="form-group">
+                 @Html.ActionLink("Nova Categoria","Create","AdminCategoria",null,new{@class="btn btn-primary"})
+            </div>
         }
         <div>
             <input type="submit" class="btn btn-primary" value="Gravar">

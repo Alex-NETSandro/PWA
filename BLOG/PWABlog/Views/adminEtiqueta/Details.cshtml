@@ -1,10 +1,5 @@
 ﻿@using PWABlog.ViewModels.Admin.etiqueta
 @model PWABlog.ViewModels.Admin.etiqueta.EtiquetaDetailsViewModel
-@{
-    ViewBag.Title = @ViewBag.title;
-    Layout = "_Layout";
-}
-
 <div class="form-group">
     @Html.Label(null,"Id",new{@for="idEtiqueta"})
     @Html.EditorFor(model =>model.Id,new{htmlAttributes = new{@class="form-control",@type="numeric",@id="idEtiqueta",@value = @Model.Id,@disabled=true}} )

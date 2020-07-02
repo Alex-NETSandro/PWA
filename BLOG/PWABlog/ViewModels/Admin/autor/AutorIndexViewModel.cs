@@ -11,7 +11,7 @@ namespace PWABlog.ViewModels.Admin.autor
         public AutorIndexViewModel()
         {
             Autores = new List<AutorIndex>();
-            TitlePage = "Autores";
+            TitlePage = "Authors";
         }
     }
 }
